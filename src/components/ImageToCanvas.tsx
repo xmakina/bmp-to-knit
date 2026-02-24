@@ -44,13 +44,18 @@ const ImageToCanvas = ({ file, onCanvasReady }: Props) => {
     }
 
     await renderImage(file, img.current);
-    addToCanvas(img.current, canvas.current);
-    onCanvasReady(canvas.current);
   }, [file, onCanvasReady]);
 
   useEffect(() => {
-    convertFileToCanvas();
-  }, [convertFileToCanvas]);
+    convertFileToCanvas().then(() => {
+      if (!img.current || !canvas.current) {
+        return;
+      }
+
+      addToCanvas(img.current, canvas.current);
+      onCanvasReady(canvas.current);
+    });
+  }, [img, canvas]);
 
   return (
     <div>
