@@ -8,6 +8,7 @@ type Props = {
 const Pattern = ({ pattern, onClick }: Props) => {
   const toRow = (row: boolean[], rowId: number) => (
     <Row
+      key={rowId}
       id={rowId}
       stitches={row}
       onClick={(stitch) => onClick(rowId, stitch)}

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import FileUpload from "./FileUpload";
 import ImageToCanvas from "./ImageToCanvas";
-import Pattern from "afghan-square-maker/dist/src/pattern";
 import PatternEditor from "./PatternEditor";
-import Method from "afghan-square-maker/dist/src/method";
+import { Pattern, Method } from "afghan-square-maker";
 
 const PatternCreator = () => {
   const [file, setFile] = useState<File>();
@@ -52,8 +51,8 @@ const PatternCreator = () => {
               <div>Group identical rows?</div>
             </div>
             <div>
-              {Method.FromPattern(pattern, { groupRows }).map((val) => (
-                <p>{val}</p>
+              {Method.FromPattern(pattern, { groupRows }).map((val, idx) => (
+                <p key={idx}>{val}</p>
               ))}
             </div>
           </div>
