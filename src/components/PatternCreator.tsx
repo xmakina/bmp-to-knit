@@ -27,20 +27,20 @@ const PatternCreator = () => {
       <div className="flex items-center justify-between border">
         <FileUpload onFileUploaded={handleFileUpload} />
       </div>
-      <div>
+      <div className="hidden">
         {file && (
           <ImageToCanvas file={file} onCanvasReady={handleCanvasReady} />
         )}
       </div>
       {pattern && (
-        <div className="flex flex-col gap-4 justify-between w-full">
-          <div className="w-full">
+        <div className="flex flex-col gap-4 align-middle items-center justify-center w-screen">
+          <div>
             <PatternEditor
               pattern={pattern.rows}
               onChange={handlePatternEdit}
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col whitespace-nowrap items-center w-full">
             <div className="flex flex-row gap-2">
               <div>
                 <input
