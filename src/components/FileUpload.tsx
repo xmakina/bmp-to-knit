@@ -12,12 +12,7 @@ const FileUpload = ({ onFileUploaded }: Props) => {
     onFileUploaded(files[0]);
   };
 
-  return (
-    <div className="flex flex-col">
-      <input type="file" accept="image/*" onChange={onFileChanged} />
-      <div className="hidden"></div>
-    </div>
-  );
+  return <input type="file" accept="image/*" onChange={onFileChanged} />;
 };
 
 export default FileUpload;

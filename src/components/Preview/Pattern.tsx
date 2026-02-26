@@ -7,7 +7,11 @@ type Props = {
 
 const Pattern = ({ pattern, onClick }: Props) => {
   const toRow = (row: boolean[], rowId: number) => (
-    <Row stitches={row} onClick={(stitch) => onClick(rowId, stitch)} />
+    <Row
+      id={rowId}
+      stitches={row}
+      onClick={(stitch) => onClick(rowId, stitch)}
+    />
   );
 
   return <div>{pattern.map(toRow)}</div>;

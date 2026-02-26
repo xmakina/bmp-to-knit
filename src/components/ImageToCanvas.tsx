@@ -55,10 +55,10 @@ const ImageToCanvas = ({ file, onCanvasReady }: Props) => {
       addToCanvas(img.current, canvas.current);
       onCanvasReady(canvas.current);
     });
-  }, [img, canvas]);
+  }, [img, canvas, file]);
 
   return (
-    <div>
+    <div className="flex flex-row gap-5 justify-between">
       <img ref={img} alt="uploaded image" />
       <canvas ref={canvas} />
     </div>
