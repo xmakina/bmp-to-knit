@@ -7,9 +7,10 @@ type Props = {
 const Checkbox = ({ label, checked, onChange }: Props) => {
   return (
     <div className="flex flex-row gap-2">
-      <div>{label}</div>
+      <label htmlFor="checkbox">{label}</label>
       <div>
         <input
+          id="checkbox"
           type="checkbox"
           checked={checked}
           onChange={() => onChange(!checked)}

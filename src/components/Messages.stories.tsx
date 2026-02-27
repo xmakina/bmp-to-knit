@@ -12,6 +12,6 @@ type Story = StoryObj<typeof Subject>;
 export const Default: Story = {};
 export const WithMessages: Story = {
   args: {
-    messages: ["Hello", "World"],
+    messages: ["Hello", "World", "file added, updating..."],
   },
 };

@@ -10,8 +10,10 @@ const Messages = ({ messages = [] }: Props) => {
   const [display, setDisplay] = useState(false);
 
   return (
-    <div className="flex flex-col">
-      <Checkbox label="Show logs?" onChange={setDisplay} checked={display} />
+    <div className="flex flex-col gap-2">
+      <div className="justify-start align-middle items-start flex flex-row">
+        <Checkbox label="Show logs?" onChange={setDisplay} checked={display} />
+      </div>
       <div
         className={clsx("flex-col", { hidden: !display, flex: display })}
         hidden={!display}
