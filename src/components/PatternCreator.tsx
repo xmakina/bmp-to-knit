@@ -3,11 +3,13 @@ import FileUpload from "./FileUpload";
 import ImageToCanvas from "./ImageToCanvas";
 import PatternEditor from "./PatternEditor";
 import { Pattern, Method } from "afghan-square-maker";
+import Messages from "./Messages";
 
 const PatternCreator = () => {
   const [file, setFile] = useState<File>();
   const [pattern, setPattern] = useState<Pattern>();
   const [groupRows, setGroupRows] = useState(true);
+  const [messages, setMessages] = useState<string[]>([]);
 
   function handleFileUpload(file: File): void {
     setFile(file);
@@ -21,10 +23,15 @@ const PatternCreator = () => {
     setPattern(Pattern.FromRows(newPattern));
   }
 
+  function onUpdate(message: string) {
+    setMessages([...messages, message]);
+  }
+
   return (
     <div className="flex flex-col gap-4 items-center align-middle justify-center">
+      <Messages messages={messages} />
       <div className="flex items-center justify-between border">
-        <FileUpload onFileUploaded={handleFileUpload} />
+        <FileUpload onFileUploaded={handleFileUpload} onUpdate={onUpdate} />
       </div>
       <div className="hidden">
         {file && (
