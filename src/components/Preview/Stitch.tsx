@@ -9,7 +9,7 @@ const Stitch = ({ active = false, onClick = () => {} }: Props) => {
   return (
     <div
       onClick={onClick}
-      className="flex flex-1 justify-center items-center border-black border bg-white h-full w-full p-px"
+      className="flex justify-center items-center border-black border bg-white w-full p-px"
     >
       {active && <Active />}
     </div>

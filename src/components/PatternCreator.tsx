@@ -39,7 +39,7 @@ const PatternCreator = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center align-middle justify-center w-screen p-4">
+    <div className="flex flex-col gap-4 items-center align-middle justify-center max-w-screen min-w-screen p-4">
       <Messages messages={messages} />
       <div className="flex items-center justify-between border">
         <FileUpload
@@ -58,13 +58,13 @@ const PatternCreator = () => {
       </div>
       {pattern && (
         <div className="flex flex-col gap-4 align-middle items-center justify-center w-full">
-          <div className="w-full">
+          <div className="w-full max-w-3xl">
             <PatternEditor
               pattern={pattern.rows}
               onChange={handlePatternEdit}
             />
           </div>
-          <div className="flex flex-col whitespace-nowrap items-center w-full">
+          <div className="flex flex-col items-center w-full">
             <div className="flex flex-row gap-2">
               <div>
                 <input
