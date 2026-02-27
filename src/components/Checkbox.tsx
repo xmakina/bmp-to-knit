@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 type Props = {
   checked: boolean;
   label: string;
@@ -5,12 +7,14 @@ type Props = {
 };
 
 const Checkbox = ({ label, checked, onChange }: Props) => {
+  const id = useId();
+
   return (
     <div className="flex flex-row gap-2">
-      <label htmlFor="checkbox">{label}</label>
+      <label htmlFor={id}>{label}</label>
       <div>
         <input
-          id="checkbox"
+          id={id}
           type="checkbox"
           checked={checked}
           onChange={() => onChange(!checked)}
