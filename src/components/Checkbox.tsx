@@ -1,5 +1,5 @@
 type Props = {
-  checked?: boolean;
+  checked: boolean;
   label: string;
   onChange: (newValue: boolean) => void;
 };
