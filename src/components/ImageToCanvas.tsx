@@ -32,27 +32,33 @@ const addToCanvas = (image: HTMLImageElement, target: HTMLCanvasElement) => {
 type Props = {
   file: File;
   onCanvasReady: (context: HTMLCanvasElement) => void;
+  onUpdate?: (message: string) => void;
 };
 
-const ImageToCanvas = ({ file, onCanvasReady }: Props) => {
+const ImageToCanvas = ({ file, onCanvasReady, onUpdate = () => {} }: Props) => {
   const img = useRef<HTMLImageElement | null>(null);
   const canvas = useRef<HTMLCanvasElement | null>(null);
 
   const convertFileToCanvas = useCallback(async () => {
     if (img.current === null || canvas.current === null) {
+      onUpdate("img and canvas not loaded in callback");
       return;
     }
 
     await renderImage(file, img.current);
+    onUpdate("image rendered");
   }, [file, onCanvasReady]);
 
   useEffect(() => {
     convertFileToCanvas().then(() => {
       if (!img.current || !canvas.current) {
+        onUpdate("img and canvas not loaded in use effect");
         return;
       }
 
+      onUpdate("adding to canvas");
       addToCanvas(img.current, canvas.current);
+      onUpdate("added to canvas, canvas is ready");
       onCanvasReady(canvas.current);
     });
   }, [img, canvas, file]);

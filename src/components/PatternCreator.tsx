@@ -23,19 +23,28 @@ const PatternCreator = () => {
     setPattern(Pattern.FromRows(newPattern));
   }
 
-  function onUpdate(message: string) {
-    setMessages([...messages, message]);
+  function onUpdate(component: string) {
+    return function (message: string) {
+      setMessages([...messages, `${component}: ${message}`]);
+    };
   }
 
   return (
     <div className="flex flex-col gap-4 items-center align-middle justify-center">
       <Messages messages={messages} />
       <div className="flex items-center justify-between border">
-        <FileUpload onFileUploaded={handleFileUpload} onUpdate={onUpdate} />
+        <FileUpload
+          onFileUploaded={handleFileUpload}
+          onUpdate={onUpdate("file upload")}
+        />
       </div>
       <div className="hidden">
         {file && (
-          <ImageToCanvas file={file} onCanvasReady={handleCanvasReady} />
+          <ImageToCanvas
+            file={file}
+            onCanvasReady={handleCanvasReady}
+            onUpdate={onUpdate("image to canvas")}
+          />
         )}
       </div>
       {pattern && (
