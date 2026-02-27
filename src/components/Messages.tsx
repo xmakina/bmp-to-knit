@@ -10,7 +10,7 @@ const Messages = ({ messages = [] }: Props) => {
   const [display, setDisplay] = useState(false);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full items-center">
       <div className="justify-start align-middle items-start flex flex-row">
         <Checkbox label="Show logs?" onChange={setDisplay} checked={display} />
       </div>

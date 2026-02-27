@@ -13,7 +13,6 @@ const FileUpload = ({ onFileUploaded, onUpdate = () => {} }: Props) => {
       return;
     }
 
-    onUpdate("file added, updating...");
     onFileUploaded(files[0]);
   };
 

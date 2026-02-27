@@ -3,11 +3,14 @@ type Props = {
   onClick?: () => void;
 };
 
-const Active = () => <div className="bg-black rounded-4xl w-4 h-4"></div>;
+const Active = () => <div className="bg-black rounded-4xl h-full flex-1"></div>;
 
 const Stitch = ({ active = false, onClick = () => {} }: Props) => {
   return (
-    <div onClick={onClick} className="flex w-5 h-5 justify-center items-center border-black border">
+    <div
+      onClick={onClick}
+      className="flex flex-1 justify-center items-center border-black border bg-white h-full w-full p-px"
+    >
       {active && <Active />}
     </div>
   );

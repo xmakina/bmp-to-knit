@@ -11,26 +11,35 @@ const PatternCreator = () => {
   const [groupRows, setGroupRows] = useState(true);
   const [messages, setMessages] = useState<string[]>([]);
 
+  function onUpdate(component: string) {
+    return function (message: string) {
+      setMessages((prev) => [
+        ...prev,
+        `${component}: ${message.substring(0, 64)}`,
+      ]);
+    };
+  }
+
+  const sendUpdate = onUpdate("pattern creator");
+
   function handleFileUpload(file: File): void {
     setFile(file);
   }
 
   function handleCanvasReady(canvas: HTMLCanvasElement): void {
-    setPattern(Pattern.FromCanvas(canvas));
+    sendUpdate("setting the pattern from canvas");
+    const pattern = Pattern.FromCanvas(canvas);
+    sendUpdate(`pattern ${pattern.height}, ${pattern.width}`);
+    setPattern(pattern);
   }
 
   function handlePatternEdit(newPattern: boolean[][]): void {
+    sendUpdate("setting the pattern from edit");
     setPattern(Pattern.FromRows(newPattern));
   }
 
-  function onUpdate(component: string) {
-    return function (message: string) {
-      setMessages([...messages, `${component}: ${message}`]);
-    };
-  }
-
   return (
-    <div className="flex flex-col gap-4 items-center align-middle justify-center">
+    <div className="flex flex-col gap-4 items-center align-middle justify-center w-screen p-4">
       <Messages messages={messages} />
       <div className="flex items-center justify-between border">
         <FileUpload
@@ -48,8 +57,8 @@ const PatternCreator = () => {
         )}
       </div>
       {pattern && (
-        <div className="flex flex-col gap-4 align-middle items-center justify-center w-screen">
-          <div>
+        <div className="flex flex-col gap-4 align-middle items-center justify-center w-full">
+          <div className="w-full">
             <PatternEditor
               pattern={pattern.rows}
               onChange={handlePatternEdit}

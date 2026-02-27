@@ -1,4 +1,3 @@
-import "./App.css";
 import PatternCreator from "./components/PatternCreator";
 
 function App() {
