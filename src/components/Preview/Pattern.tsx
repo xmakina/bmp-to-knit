@@ -15,7 +15,7 @@ const Pattern = ({ pattern, onClick }: Props) => {
     />
   );
 
-  return <div className="flex flex-col w-full gap-0">{pattern.map(toRow)}</div>;
+  return <div className="flex flex-col gap-0">{pattern.map(toRow)}</div>;
 };
 
 export default Pattern;

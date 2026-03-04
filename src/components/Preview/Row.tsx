@@ -12,8 +12,8 @@ const Row = ({ id, stitches, onClick = () => {} }: Props) => {
   );
 
   return (
-    <div className="flex flex-row gap-1 w-full">
-      <div className="flex justify-end items-center text-[12px] min-w-4 max-w-4">{id + 1}</div>
+    <div className="flex flex-row gap-1 w-full h-2.5">
+      <div className="flex justify-end items-center text-[11px] min-w-4 max-w-4">{id + 1}</div>
       <div className="flex flex-row w-full gap-0">{stitches.map(toStitch)}</div>
     </div>
   );

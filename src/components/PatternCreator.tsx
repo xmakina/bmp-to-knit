@@ -57,8 +57,8 @@ const PatternCreator = () => {
         )}
       </div>
       {pattern && (
-        <div className="flex flex-col gap-4 align-middle items-center justify-center w-full">
-          <div className="w-full max-w-3xl">
+        <div className="flex flex-col gap-4 align-middle items-center justify-center">
+          <div className="w-full">
             <PatternEditor
               pattern={pattern.rows}
               onChange={handlePatternEdit}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import ratioCalculator from "../utilities/ratioCalculator";
 
 const renderImage = (file: File) => {
   return new Promise<string>((resolve, reject) => {
@@ -28,15 +29,31 @@ const addToCanvas = (image: HTMLImageElement, target: HTMLCanvasElement) => {
     );
   }
 
-  target.width = image.naturalWidth;
-  target.height = image.naturalHeight;
+  const calc = ratioCalculator({ width: 34, height: 27 });
+  const { width, height } = calc({
+    width: image.naturalWidth,
+    height: image.naturalHeight,
+  });
+  target.width = width;
+  target.height = height;
 
   const context = target.getContext("2d");
   if (!context) {
     throw Error("No 2D Context in Canvas");
   }
+  const offsetX = (width - image.naturalWidth) / 2;
+  const offsetY = (height - image.naturalHeight) / 2;
 
-  context.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
+  context.fillStyle = "white";
+  context.fillRect(0, 0, target.width, target.height);
+
+  context.drawImage(
+    image,
+    offsetX,
+    offsetY,
+    image.naturalWidth,
+    image.naturalHeight,
+  );
   return context;
 };
 

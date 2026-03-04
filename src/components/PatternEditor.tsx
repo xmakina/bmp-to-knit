@@ -51,7 +51,7 @@ const PatternEditor = ({ pattern = [[]], onChange }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row gap-2 items-center justify-center">
         <div>
           <Checkbox
             onChange={setAddBorder}
